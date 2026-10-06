@@ -731,56 +731,6 @@ select:user-invalid:focus {
 
 
 /* ---------- Página inicial ---------- */
-/* Faixa escura no estilo da tela de login do SGEA */
-.hero {
-    margin-bottom: 20px;
-    padding: 36px;
-    color: #ffffff;
-    background: radial-gradient(circle at 20% 20%, #2a2a2a, var(--black-900) 60%);
-    border-top: 4px solid var(--yellow-500);
-    border-radius: 16px;
-    box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.45);
-}
-
-.hero-tag {
-    font-size: 12px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: var(--yellow-500);
-}
-
-.hero h1 {
-    margin: 8px 0 10px;
-    font-size: 32px;
-    line-height: 1.15;
-}
-
-.hero p {
-    max-width: 620px;
-    margin: 0;
-    font-size: 15px;
-    line-height: 1.6;
-    color: #a3a3a3;
-}
-
-.tecnologias {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 20px;
-}
-
-.tecnologias span {
-    padding: 4px 12px;
-    font-size: 12px;
-    font-weight: 600;
-    color: #e5e5e5;
-    background: var(--black-800);
-    border: 1px solid #333333;
-    border-radius: 999px;
-}
-
 /* Cards das operações (estilo stat-card do SGEA) */
 .op-grid {
     display: grid;
@@ -940,13 +890,5 @@ select:user-invalid:focus {
     .busca .btn,
     .acoes .btn {
         flex: 1;
-    }
-
-    .hero {
-        padding: 24px 20px;
-    }
-
-    .hero h1 {
-        font-size: 24px;
     }
 }
