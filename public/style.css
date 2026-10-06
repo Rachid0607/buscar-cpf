@@ -1,0 +1,952 @@
+/* ============================================================
+   CSS compartilhado por TODAS as páginas do CRUD de Pessoas
+   Identidade visual baseada no SGEA (Sistema de Gestão de Eventos Acadêmicos):
+   topo preto, menu branco com destaque amarelo, botões amarelos.
+   Cada operação tem a sua cor (tom), definida pela classe do <body>:
+   tema-post (verde), tema-get (azul), tema-put (laranja), tema-delete (vermelho)
+   ============================================================ */
+
+/* ---------- Variáveis (cores e medidas) ---------- */
+:root {
+    /* Marca: amarelo só como fundo; --yellow-text para texto sobre fundo claro */
+    --yellow-500: #ffc400;
+    --yellow-600: #e0a800;
+    --yellow-50: #fff8e1;
+    --yellow-text: #8a6400;
+    --black-900: #121212;
+    --black-800: #1f1f1f;
+    --on-yellow: #121212;
+
+    /* Tons das operações */
+    --green-600: #16a34a;
+    --green-50: #f0fdf4;
+    --blue-600: #2563eb;
+    --blue-500: #3b82f6;
+    --blue-50: #eff6ff;
+    --orange-600: #d97706;
+    --orange-50: #fffbeb;
+    --red-600: #dc2626;
+    --red-50: #fef2f2;
+
+    /* Cinzas */
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-300: #cbd5e1;
+    --gray-500: #64748b;
+    --gray-700: #334155;
+    --gray-900: #0f172a;
+
+    --radius: 10px;
+    --shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.08);
+
+    /* Tom da página atual (a página inicial usa o amarelo da marca) */
+    --tom: var(--yellow-500);
+    --tom-50: var(--yellow-50);
+}
+
+/* Uma cor por operação */
+body.tema-post   { --tom: var(--green-600);  --tom-50: var(--green-50); }
+body.tema-get    { --tom: var(--blue-600);   --tom-50: var(--blue-50); }
+body.tema-put    { --tom: var(--orange-600); --tom-50: var(--orange-50); }
+body.tema-delete { --tom: var(--red-600);    --tom-50: var(--red-50); }
+
+
+/* ---------- Base ---------- */
+* {
+    box-sizing: border-box;
+}
+
+/* Garante que o atributo hidden esconda o elemento mesmo com display definido no CSS */
+[hidden] {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    color: var(--gray-900);
+    background: var(--gray-50);
+}
+
+a {
+    color: var(--yellow-text);
+}
+
+h1, h2, h3 {
+    margin: 0;
+    font-weight: 700;
+}
+
+
+/* ---------- Topo (barra preta) ---------- */
+.topbar {
+    height: 60px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    color: #ffffff;
+    background: var(--black-900);
+}
+
+.brand {
+    font-size: 17px;
+    font-weight: 700;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.brand-accent {
+    color: var(--blue-500);
+}
+
+.topbar-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    font-size: 13px;
+    line-height: 1.3;
+}
+
+.topbar-info strong {
+    color: #ffffff;
+}
+
+.topbar-info span {
+    color: #a3a3a3;
+}
+
+
+/* ---------- Menu (barra branca, ícone + rótulo) ---------- */
+.main-nav {
+    flex-shrink: 0;
+    display: flex;
+    align-items: stretch;
+    overflow-x: auto;
+    padding: 0 16px;
+    background: #ffffff;
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: 10px 18px 8px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    color: var(--gray-500);
+    text-decoration: none;
+    border-bottom: 3px solid transparent;
+    transition: color 0.15s, border-color 0.15s;
+}
+
+.nav-link:hover {
+    color: var(--gray-900);
+}
+
+/* Página atual destacada no menu */
+.nav-link.active {
+    color: var(--gray-900);
+    border-bottom-color: var(--yellow-500);
+}
+
+.icone {
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+}
+
+
+/* ---------- Conteúdo ---------- */
+.content {
+    flex: 1;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 28px;
+}
+
+/* Páginas de formulário ficam numa coluna central */
+.pagina {
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+/* Cabeçalho da página: método HTTP + título + descrição */
+.page-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    margin-top: 6px;
+    font-size: 24px;
+}
+
+.page-header p {
+    margin: 4px 0 0;
+    color: var(--gray-500);
+}
+
+/* Quadrado com o ícone da operação */
+.page-icone {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 52px;
+    height: 52px;
+    color: var(--tom);
+    background: var(--tom-50);
+    border: 1px solid var(--gray-200);
+    border-left: 4px solid var(--tom);
+    border-radius: var(--radius);
+}
+
+.page-icone .icone {
+    width: 24px;
+    height: 24px;
+}
+
+/* Cards */
+.card {
+    margin-bottom: 20px;
+    padding: 24px;
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-top: 4px solid var(--tom);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+
+
+/* ---------- Badges ---------- */
+.badge {
+    display: inline-block;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 999px;
+}
+
+.badge.tone-neutral { color: var(--gray-700);   background: var(--gray-100); }
+.badge.tone-green   { color: var(--green-600);  background: var(--green-50); }
+.badge.tone-blue    { color: var(--blue-600);   background: var(--blue-50); }
+.badge.tone-orange  { color: var(--orange-600); background: var(--orange-50); }
+.badge.tone-red     { color: var(--red-600);    background: var(--red-50); }
+
+/* Método HTTP (ex.: POST /pessoas) no tom da página */
+.metodo {
+    font-family: Consolas, "Courier New", monospace;
+    color: var(--tom);
+    background: var(--tom-50);
+}
+
+
+/* ---------- Formulários ---------- */
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px 18px;
+}
+
+/* Título de seção dentro do formulário (ocupa as 2 colunas) */
+.form-secao {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+    padding-bottom: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--gray-500);
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.form-secao:first-child {
+    margin-top: 0;
+}
+
+.form-secao .icone {
+    width: 16px;
+    height: 16px;
+    color: var(--tom);
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.field-largo {
+    grid-column: 1 / -1;
+}
+
+.field label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gray-700);
+}
+
+.campo-obrigatorio {
+    color: var(--red-600);
+    font-weight: 700;
+}
+
+.form-legenda {
+    grid-column: 1 / -1;
+    margin: 0;
+    font-size: 12px;
+    color: var(--gray-500);
+}
+
+input,
+select {
+    width: 100%;
+    padding: 9px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    color: var(--gray-900);
+    background-color: #ffffff;
+    border: 1px solid var(--gray-300);
+    border-radius: 8px;
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--yellow-600);
+    box-shadow: 0 0 0 3px var(--yellow-50);
+}
+
+/* Campo inválido só depois que o usuário interagiu */
+input:user-invalid,
+select:user-invalid {
+    border-color: var(--red-600);
+}
+
+input:user-invalid:focus,
+select:user-invalid:focus {
+    box-shadow: 0 0 0 3px var(--red-50);
+}
+
+/* Campo de busca com lupa */
+.input-icone {
+    position: relative;
+}
+
+.input-icone .icone {
+    position: absolute;
+    top: 50%;
+    left: 11px;
+    width: 16px;
+    height: 16px;
+    color: var(--gray-500);
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.input-icone input {
+    padding-left: 34px;
+}
+
+
+/* ---------- Busca por CPF ---------- */
+.busca {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.busca .field {
+    flex: 1;
+    min-width: 200px;
+}
+
+
+/* ---------- Botões ---------- */
+.acoes {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 6px;
+    padding-top: 16px;
+    border-top: 1px solid var(--gray-200);
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 9px 16px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    white-space: nowrap;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, opacity 0.15s;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn .icone {
+    width: 16px;
+    height: 16px;
+}
+
+.btn-primary {
+    color: var(--on-yellow);
+    background: var(--yellow-500);
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: var(--yellow-600);
+}
+
+.btn-ghost {
+    color: var(--gray-700);
+    background: transparent;
+    border: 1px solid var(--gray-300);
+}
+
+.btn-ghost:hover:not(:disabled) {
+    background: var(--gray-100);
+}
+
+.btn-danger-solid {
+    color: #ffffff;
+    background: var(--red-600);
+}
+
+.btn-danger-solid:hover:not(:disabled) {
+    background: #b91c1c;
+}
+
+/* Botões pequenos da tabela (Editar / Excluir) */
+.btn-sm {
+    padding: 5px 10px;
+    font-size: 13px;
+}
+
+.btn-editar {
+    color: var(--orange-600);
+    background: var(--orange-50);
+}
+
+.btn-editar:hover {
+    color: #ffffff;
+    background: var(--orange-600);
+}
+
+.btn-excluir {
+    color: var(--red-600);
+    background: var(--red-50);
+}
+
+.btn-excluir:hover {
+    color: #ffffff;
+    background: var(--red-600);
+}
+
+
+/* ---------- Mensagens de feedback ---------- */
+.mensagem {
+    margin-top: 16px;
+    padding: 12px 14px;
+    font-weight: 500;
+    border: 1px solid;
+    border-left-width: 4px;
+    border-radius: 8px;
+    animation: aparecer 0.15s ease-out;
+}
+
+.mensagem a {
+    margin-left: 4px;
+    font-weight: 700;
+    color: inherit;
+}
+
+.mensagem.sucesso {
+    color: #166534;
+    background: var(--green-50);
+    border-color: var(--green-600);
+}
+
+.mensagem.erro {
+    color: #991b1b;
+    background: var(--red-50);
+    border-color: var(--red-600);
+}
+
+.mensagem.info {
+    color: #1e40af;
+    background: var(--blue-50);
+    border-color: var(--blue-600);
+}
+
+@keyframes aparecer {
+    from { opacity: 0; transform: translateY(-6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ---------- Estado vazio (antes de buscar) ---------- */
+/* Só aparece enquanto o formulário/dados logo antes dele estiver escondido */
+.estado-vazio {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 32px 16px;
+    text-align: center;
+    color: var(--gray-500);
+    border: 2px dashed var(--gray-200);
+    border-radius: var(--radius);
+}
+
+[hidden] + .estado-vazio {
+    display: flex;
+}
+
+.estado-vazio .icone {
+    width: 40px;
+    height: 40px;
+    padding: 9px;
+    color: var(--tom);
+    background: var(--tom-50);
+    border-radius: 50%;
+}
+
+.estado-vazio p {
+    margin: 0;
+}
+
+
+/* ---------- Avatar e perfil ---------- */
+/* Círculo amarelo com as iniciais da pessoa */
+.avatar {
+    flex-shrink: 0;
+    display: inline-grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--on-yellow);
+    background: var(--yellow-500);
+    border-radius: 50%;
+}
+
+.avatar-grande {
+    width: 52px;
+    height: 52px;
+    font-size: 18px;
+}
+
+/* Faixa com avatar, nome e detalhes da pessoa carregada */
+.perfil {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 16px;
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-left: 4px solid var(--tom);
+    border-radius: 8px;
+}
+
+.perfil strong {
+    display: block;
+    font-size: 16px;
+}
+
+.perfil span:not(.avatar) {
+    font-size: 13px;
+    color: var(--gray-500);
+}
+
+
+/* ---------- Dados da pessoa (página de exclusão) ---------- */
+.profile-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px 20px;
+    margin: 18px 0 0;
+}
+
+.profile-details div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+.profile-details dt {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gray-500);
+}
+
+.profile-details dd {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+/* Os itens já têm linha embaixo, então os botões não precisam de outra */
+.profile-details + .acoes {
+    border-top: 0;
+}
+
+
+/* ---------- Tabela (listagem) ---------- */
+.info-lista {
+    margin-bottom: 12px;
+}
+
+.info-lista:empty {
+    display: none;
+}
+
+/* Rolagem horizontal no celular */
+.tabela-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.table th {
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+    color: var(--gray-500);
+    border-bottom: 1px solid var(--gray-200);
+}
+
+.table td {
+    padding: 12px;
+    white-space: nowrap;
+    vertical-align: middle;
+    border-bottom: 1px solid var(--gray-100);
+}
+
+/* Tabela zebrada */
+.table tbody tr:nth-child(even) {
+    background: var(--gray-50);
+}
+
+.table tbody tr:hover {
+    background: var(--yellow-50);
+}
+
+.col-id {
+    font-weight: 700;
+    color: var(--gray-500);
+}
+
+.col-id::before {
+    content: "#";
+}
+
+.celula-pessoa {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Linha principal e linha secundária dentro da célula */
+.principal {
+    display: block;
+    font-weight: 600;
+}
+
+.secundario {
+    display: block;
+    margin-top: 2px;
+    font-size: 12px;
+    color: var(--gray-500);
+}
+
+.secundario .badge {
+    margin-left: 6px;
+    padding: 1px 8px;
+    font-size: 11px;
+}
+
+.table .col-acoes {
+    text-align: right;
+}
+
+.col-acoes .btn + .btn {
+    margin-left: 6px;
+}
+
+.empty-cell {
+    padding: 24px !important;
+    text-align: center;
+    color: var(--gray-500);
+}
+
+
+/* ---------- Página inicial ---------- */
+/* Faixa escura no estilo da tela de login do SGEA */
+.hero {
+    margin-bottom: 20px;
+    padding: 36px;
+    color: #ffffff;
+    background: radial-gradient(circle at 20% 20%, #2a2a2a, var(--black-900) 60%);
+    border-top: 4px solid var(--yellow-500);
+    border-radius: 16px;
+    box-shadow: 0 24px 48px -24px rgba(0, 0, 0, 0.45);
+}
+
+.hero-tag {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--yellow-500);
+}
+
+.hero h1 {
+    margin: 8px 0 10px;
+    font-size: 32px;
+    line-height: 1.15;
+}
+
+.hero p {
+    max-width: 620px;
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #a3a3a3;
+}
+
+.tecnologias {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.tecnologias span {
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #e5e5e5;
+    background: var(--black-800);
+    border: 1px solid #333333;
+    border-radius: 999px;
+}
+
+/* Cards das operações (estilo stat-card do SGEA) */
+.op-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.op-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 18px;
+    color: var(--gray-900);
+    text-decoration: none;
+    background: #ffffff;
+    border: 1px solid var(--gray-200);
+    border-left: 4px solid var(--tom-op);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.op-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+}
+
+.op-card-topo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-self: stretch;
+}
+
+.op-card-icone {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    color: var(--tom-op);
+    background: var(--tom-op-50);
+    border-radius: 8px;
+}
+
+.op-card-icone .icone {
+    width: 20px;
+    height: 20px;
+}
+
+.op-card .badge {
+    font-family: Consolas, "Courier New", monospace;
+}
+
+.op-card h2 {
+    margin-top: 4px;
+    font-size: 17px;
+}
+
+.op-card p {
+    flex: 1;
+    margin: 0;
+    font-size: 13px;
+    color: var(--gray-500);
+}
+
+.op-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 4px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--yellow-text);
+}
+
+.op-card-link .icone {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.15s;
+}
+
+.op-card:hover .op-card-link .icone {
+    transform: translateX(3px);
+}
+
+.op-post   { --tom-op: var(--green-600);  --tom-op-50: var(--green-50); }
+.op-get    { --tom-op: var(--blue-600);   --tom-op-50: var(--blue-50); }
+.op-put    { --tom-op: var(--orange-600); --tom-op-50: var(--orange-50); }
+.op-delete { --tom-op: var(--red-600);    --tom-op-50: var(--red-50); }
+
+
+/* ---------- Rodapé ---------- */
+.rodape {
+    padding: 18px 16px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--gray-500);
+    border-top: 1px solid var(--gray-200);
+}
+
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 900px) {
+    .op-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .profile-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Celular */
+@media (max-width: 640px) {
+    .topbar {
+        padding: 0 16px;
+    }
+
+    .topbar-info {
+        display: none;
+    }
+
+    .main-nav {
+        padding: 0 4px;
+    }
+
+    .nav-link {
+        flex: 1;
+        padding: 10px 6px 8px;
+        font-size: 10px;
+    }
+
+    .content {
+        padding: 18px 14px;
+    }
+
+    .page-header h1 {
+        font-size: 20px;
+    }
+
+    .page-icone {
+        width: 44px;
+        height: 44px;
+    }
+
+    .card {
+        padding: 16px;
+    }
+
+    /* Formulário e cards passam para 1 coluna (dados da exclusão ficam em 2) */
+    .form-grid,
+    .op-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .busca .btn,
+    .acoes .btn {
+        flex: 1;
+    }
+
+    .hero {
+        padding: 24px 20px;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+}

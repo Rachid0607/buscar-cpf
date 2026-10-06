@@ -1,0 +1,19 @@
+{
+  "name": "crud-pessoas",
+  "version": "1.0.0",
+  "description": "CRUD completo de pessoas com JSON Server + Node.js/Express, uma página HTML por operação",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "crud",
+    "json-server",
+    "express"
+  ],
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.22.3",
+    "json-server": "^0.17.4"
+  }
+}

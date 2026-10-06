@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Início | CRUD de Pessoas</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="topbar">
+        <a href="/" class="brand"><span class="brand-accent">CRUD</span> · Cadastro de Pessoas</a>
+        <div class="topbar-info">
+            <strong>Programação para Internet</strong>
+            <span>JSON Server + Express</span>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <a href="/" class="nav-link active" aria-current="page">
+            <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+            <span>Início</span>
+        </a>
+        <a href="/post/" class="nav-link">
+            <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6"/><path d="M22 11h-6"/></svg>
+            <span>Cadastrar</span>
+        </a>
+        <a href="/get/" class="nav-link">
+            <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></svg>
+            <span>Listar</span>
+        </a>
+        <a href="/put/" class="nav-link">
+            <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+            <span>Editar</span>
+        </a>
+        <a href="/delete/" class="nav-link">
+            <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+            <span>Excluir</span>
+        </a>
+    </nav>
+
+    <main class="content">
+        <section class="hero">
+            <span class="hero-tag">Protocolo HTTP · CRUD</span>
+            <h1>Cadastro de Pessoas</h1>
+            <p>
+                CRUD completo com JSON Server e Node.js/Express. Cada operação HTTP fica em
+                uma página própria, e as páginas se comunicam pela busca por CPF.
+            </p>
+            <div class="tecnologias">
+                <span>Node.js</span>
+                <span>Express</span>
+                <span>JSON Server</span>
+                <span>Docker + Render</span>
+            </div>
+        </section>
+
+        <div class="op-grid">
+            <a href="/post/" class="op-card op-post">
+                <div class="op-card-topo">
+                    <span class="op-card-icone">
+                        <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6"/><path d="M22 11h-6"/></svg>
+                    </span>
+                    <span class="badge tone-green">POST</span>
+                </div>
+                <h2>Cadastrar</h2>
+                <p>Adiciona uma nova pessoa. CPF já cadastrado é bloqueado.</p>
+                <span class="op-card-link">
+                    Acessar
+                    <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+            </a>
+
+            <a href="/get/" class="op-card op-get">
+                <div class="op-card-topo">
+                    <span class="op-card-icone">
+                        <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13"/><path d="M8 12h13"/><path d="M8 18h13"/><path d="M3 6h.01"/><path d="M3 12h.01"/><path d="M3 18h.01"/></svg>
+                    </span>
+                    <span class="badge tone-blue">GET</span>
+                </div>
+                <h2>Listar</h2>
+                <p>Mostra todas as pessoas em uma tabela, com busca por CPF.</p>
+                <span class="op-card-link">
+                    Acessar
+                    <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+            </a>
+
+            <a href="/put/" class="op-card op-put">
+                <div class="op-card-topo">
+                    <span class="op-card-icone">
+                        <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>
+                    </span>
+                    <span class="badge tone-orange">PUT</span>
+                </div>
+                <h2>Editar</h2>
+                <p>Busca uma pessoa pelo CPF e atualiza os dados dela.</p>
+                <span class="op-card-link">
+                    Acessar
+                    <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+            </a>
+
+            <a href="/delete/" class="op-card op-delete">
+                <div class="op-card-topo">
+                    <span class="op-card-icone">
+                        <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/><path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/><path d="M10 11v6"/><path d="M14 11v6"/></svg>
+                    </span>
+                    <span class="badge tone-red">DELETE</span>
+                </div>
+                <h2>Excluir</h2>
+                <p>Busca uma pessoa pelo CPF e remove o cadastro.</p>
+                <span class="op-card-link">
+                    Acessar
+                    <svg class="icone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                </span>
+            </a>
+        </div>
+    </main>
+
+    <footer class="rodape">Programação para Internet · CRUD com JSON Server + Node.js/Express</footer>
+</body>
+</html>

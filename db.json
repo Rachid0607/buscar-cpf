@@ -1,0 +1,46 @@
+{
+  "pessoas": [
+    {
+      "id": 1,
+      "cpf": "123.456.789-00",
+      "nome": "Maria",
+      "sobrenome": "Silva",
+      "email": "maria.silva@exemplo.com",
+      "idade": 20,
+      "telefone": "(11) 98765-4321",
+      "rua": "Rua das Flores, 120",
+      "bairro": "Centro",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "rg": "12.345.678-9"
+    },
+    {
+      "id": 2,
+      "cpf": "111.222.333-44",
+      "nome": "Pedro",
+      "sobrenome": "Souza",
+      "email": "pedro.souza@exemplo.com",
+      "idade": 30,
+      "telefone": "(21) 3456-7890",
+      "rua": "Avenida Brasil, 4500",
+      "bairro": "Jardim América",
+      "cidade": "Rio de Janeiro",
+      "estado": "RJ",
+      "rg": "23.456.789-0"
+    },
+    {
+      "id": 3,
+      "cpf": "999.888.777-66",
+      "nome": "Ana",
+      "sobrenome": "Oliveira",
+      "email": "ana.oliveira@exemplo.com",
+      "idade": 45,
+      "telefone": "(31) 99876-5432",
+      "rua": "Rua da Bahia, 88",
+      "bairro": "Savassi",
+      "cidade": "Belo Horizonte",
+      "estado": "MG",
+      "rg": "34.567.890-1"
+    }
+  ]
+}
